@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMK AL-HIKAM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* 1. ANIMASI BACKGROUND UNTUK SELURUH HALAMAN */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            /* Background Dasar Dark Modern */
+            background-color: #0f172a;
+            /* Efek Cahaya Bergerak (Mesh Gradient) */
+            background-image:
+            radial-gradient(at 0% 0%, rgba(231, 60, 126, 0.3) 0, transparent 50%),
+            radial-gradient(at 50% 0%, rgba(35, 166, 213, 0.3) 0, transparent 50%),
+            radial-gradient(at 100% 0%, rgba(35, 213, 171, 0.3) 0, transparent 50%),
+            radial-gradient(at 50% 50%, rgba(118, 75, 162, 0.2) 0, transparent 50%);
+            background-size: 200% 200%;
+            animation: meshAnimation 12s ease-in-out infinite;
+        }
+
+        @keyframes meshAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 2. LOGIN PAGE - Glassmorphism */
+        #login-page {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card-login {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 25px;
+            text-align: center;
+            width: 100%;
+            max-width: 350px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .card-login input {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 12px;
+            border: none;
+            background: rgba(255, 255, 255, 0.9);
+            outline: none;
+        }
+
+        .btn-utama {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            background: #ffffff;
+            color: #e73c7e;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* 3. NAVBAR MODERN (Floating & Glass) */
+        .navbar {
+            position: sticky;
+            top: 15px;
+            margin: 0 15px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        #btn-logout {
+            background: rgba(255, 65, 108, 0.7);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 9px;
+            font-weight: bold;
+        }
+
+        /* 4. LANDING PAGE & SECTIONS */
+        #landing-page {
+            background: transparent;
+            /* Biar animasi body tembus */
+        }
+
+        .content-section {
+            padding: 80px 20px;
+            min-height: 100vh;
+        }
+
+        /* 5. CARD VISI, MISI, JURUSAN */
+        .vm-card, .tertib-card, .jurusan-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .vm-card h3, .jurusan-card h4 {
+            color: #ff7e5f;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* Typewriter Title Area */
+        #welcome-text {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: block;
+            min-height: 35px;
+        }
+
+        /* Misi List Styling */
+        .misi-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .misi-list li {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .misi-list li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            color: #ff7e5f;
+            font-weight: bold;
+        }
+        .vm-card, .tertib-card, .jurusan-card {
+            background: rgba(255, 255, 255, 0.03);
+            /* Lebih transparan */
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 24px;
+            margin-bottom: 25px;
+            color: white;
+            /* Efek bayangan menyala halus */
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+        }
+
+        .vm-card:hover {
+            border-color: rgba(255, 126, 95, 0.5);
+            box-shadow: 0 15px 50px rgba(255, 126, 95, 0.15);
+            transform: translateY(-5px);
+        }
+        .tertib-card:hover {
+            border-color: rgba(255, 126, 95, 0.5);
+            box-shadow: 0 15px 50px rgba(255, 126, 95, 0.15);
+            transform: translateY(-5px);
+        }
+        .jurusan-card:hover {
+            border-color: rgba(255, 126, 95, 0.5);
+            box-shadow: 0 15px 50px rgba(255, 126, 95, 0.15);
+            transform: translateY(-5px);
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+
+    <section id="login-page">
+        <div class="card-login">
+            <h1>SMK AL-HIKAM</h1>
+            <p>
+                Aplikasi Gerbang Sekolah
+            </p>
+            <input type="text" id="user" placeholder="Nama Anda...">
+            <button id="btn-masuk" class="btn-utama">MASUK</button>
+        </div>
+    </section>
+    <section id="landing-page" style="display:none;">
+        <nav class="navbar">
+            <div style="font-weight: bold;">
+                SMK AL-HIKAM
+            </div>
+            <ul class="nav-links">
+                <li><a href="#visi-misi">VISI & MIS</a></li>
+                <li><a href="#tata-tertib">TATA TERTIB</a></li>
+                <li><a href="#jurusan">JURUSAN</a></li>
+                <li><button id="btn-logout" style="padding:5px
+                    10px; font-size:10px; border: none;border-radius: 5px;">Keluar</button></li>
+
+            </ul>
+        </nav>
+        <div id="visi-misi" class="content-section">
+            <div class="welcome-container">
+                <h2 id="welcome-text"></h2>
+            </div>
+            <h3>visi & misi</h3>
+            <div class="vm-card utama">
+                <div class="vm-header">
+                    <span class="vm-icon">🎯</span>
+                    <h3>VISI</h3>
+                </div>
+                <p>
+                    Menjadi Lembaga Pendidikan Berstandar Nasional dan Mencetak Lulusan yang Berakhlaq Mulia, Unggul, Berkualitas dan Kompetitif Tingkat Nasional Tahun 2015
+                </p>
+            </div>
+
+            <div class="vm-card">
+                <div class="vm-header">
+                    <span class="vm-icon">🚀</span>
+                    <h3>MISI</h3>
+                </div>
+                <ul class="misi-list">
+                    <li>Mewujudkan proses pendidikan yang menghasilkan lulusan cerdas, terampil, beriman, disiplin, bertaqwa, dan memiliki keunggulan kompetitif.</li>
+                    <li>Mewujudkan terlaksananya kurikulum yang lengkap, mutakhir berwawasan ke depan yang sesuai dengan kebutuhan dunia kerja.</li>
+                    <li>Mewujudkan budaya belajar bagi warga sekolah.</li>
+                    <li>Mewujudkan Pendidik dan tenaga kependidikan yang profesional.</li>
+                    <li>Mewujudkan kemampuan pengembangan diri yang tangguh dan kompetitif.</li>
+                    <li>Melaksanakan proses pembelajaran yang efektif dan efisien berbasis IT.</li>
+                    <li>Mewujudkan sarana prasarana berstandar nasional.</li>
+                    <li>Mengembangkan iklim belajar yang berorientasi pada keterampilan dan pekerjaan dengan meningkatkan pendidikan kejujuran tanpa meninggalkan norma dan nilai budaya.</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div id="tata-tertib" class="content-section">
+            <div class="section-title">
+                <span class="icon">📜</span>
+                <h3>TATA TERTIB SEKOLAH</h3>
+            </div>
+
+            <div class="tertib-container">
+                <div class="tertib-card">
+                    <span class="num">01</span>
+                    <p>
+                        Mewujudkan proses pendidikan yang menghasilkan lulusan cerdas, terampil, beriman, disiplin, dan bertaqwa.
+                    </p>
+                </div>
+
+                <div class="tertib-card">
+                    <span class="num">02</span>
+                    <p>
+                        Mewujudkan terlaksananya kurikulum yang lengkap, mutakhir, dan sesuai kebutuhan dunia kerja.
+                    </p>
+                </div>
+
+                <div class="tertib-card">
+                    <span class="num">03</span>
+                    <p>
+                        Mewujudkan budaya belajar bagi seluruh warga sekolah SMK AL-HIKAM.
+                    </p>
+                </div>
+
+                <div class="tertib-card">
+                    <span class="num">04</span>
+                    <p>
+                        Melaksanakan proses pembelajaran yang efektif dan efisien berbasis IT.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="jurusan" class="content-section">
+            <h3>Jurusan Kami</h3>
+            <div id="jurusan-list"></div>
+        </div>
+    </section>
+
+    <script>
+        const dataJurusan = ["TKJ", "TKR", "BISMEN"];
+        const btnMasuk = document.getElementById('btn-masuk');
+        const loginPage = document.getElementById('login-page');
+        const landingPage = document.getElementById('landing-page');
+        const welcomeText = document.getElementById('welcome-text');
+        const listJurusan = document.getElementById('jurusan-list');
+
+        // Pakai skill Array forEach kamu
+        dataJurusan.forEach(j => {
+            listJurusan.innerHTML += `<div class="jurusan-card"><h4>${j}</h4><p>Pilihan masa depan terbaik.</p></div>`;
+        });
+
+        btnMasuk.addEventListener('click', function() {
+            const nama = document.getElementById('user').value;
+            if (nama !== "") {
+                welcomeText.innerText = "Selamat Datang, " + nama;
+                landingPage.style.display = 'block';
+
+                // Scroll mulus
+                landingPage.scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Sembunyikan login agar tidak dobel
+                setTimeout(() => {
+                    loginPage.style.display = 'none';
+                }, 1000);
+            } else {
+                alert("Nama wajib diisi!");
+            }
+        });
+
+        const btnLogout = document.getElementById('btn-logout');
+
+        btnLogout.addEventListener('click', function() {
+            const yakin = confirm("Apakah kamu ingin keluar?");
+            if (yakin) {
+                // Balikkan tampilannya
+                loginPage.style.display = 'flex';
+                landingPage.style.display = 'none';
+
+                // Kosongkan kembali input nama
+                document.getElementById('user').value = "";
+            }
+        });
+
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let phrases = []; // Tempat menyimpan kata-kata
+
+        function startTypewriter() {
+            const currentPhrase = phrases[textIndex];
+            const element = document.getElementById("welcome-text");
+
+            if (isDeleting) {
+                // Proses Menghapus
+                element.innerHTML = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                // Proses Mengetik
+                element.innerHTML = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            // Pengaturan Kecepatan
+            let typeSpeed = isDeleting ? 50: 150; // Hapus lebih cepat daripada ngetik
+
+            // Jika kata sudah selesai diketik
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typeSpeed = 2000; // Berhenti sebentar di akhir kata (2 detik)
+                isDeleting = true;
+            }
+            // Jika kata sudah selesai dihapus
+            else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % phrases.length; // Pindah ke kata berikutnya
+                typeSpeed = 500;
+            }
+
+            setTimeout(startTypewriter, typeSpeed);
+        }
+
+        // Update tombol Login kamu untuk menjalankan ini
+        btnMasuk.addEventListener('click', function() {
+            const nama = document.getElementById('user').value;
+            if (nama !== "") {
+                // Isi array phrases dengan nama dari input
+                phrases = [
+                    `Halo, ${nama}!`,
+                    "Selamat Datang di website SMK AL-HIKAM",
+                    "Silahkan Berkunjung!"
+                ];
+
+                landingPage.style.display = 'block';
+                landingPage.scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Jalankan animasi ketik loop
+                startTypewriter();
+
+                setTimeout(() => {
+                    loginPage.style.display = 'none';
+                }, 1000);
+            } else {
+                alert("Namanya diisi dulu ya!");
+            }
+        });
+
+    </script>
+</body>
+</html>
+>-
